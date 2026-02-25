@@ -26,7 +26,7 @@ def resmi_analiz_et(resim):
     prompt = 'Sen uzman diyetisyensin. Fotoğraf etiketse 100g değerini, yemekse porsiyonu tahmin et. Şu formatta JSON ver: {"kalori": 0, "protein": 0, "karbonhidrat": 0, "yag": 0}'
     try:
         # İşte sihirli kısım burası: Yapay zekayı sadece JSON vermeye zorluyoruz!
-        response = model.generate_content([prompt, resim], generation_config={"response_mime_type": "application/json"})
+        response = model.generate_content([prompt, resim], generation_config={"response_mime_type": "application/json","temperature": 0.0})
         return json.loads(response.text)
     except Exception as e:
         st.error(f"Yapay zeka hatası: {e}")
